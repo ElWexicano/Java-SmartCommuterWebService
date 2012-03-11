@@ -1,68 +1,22 @@
-package ie.smartcommuter.beans;
+package ie.smartcommuter.models;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class BeanUtilities {
-	
-	public static void transportXMLWriter(String file,TransportCompany company) {
-		XStream xs = new XStream(new DomDriver());
-		
-		try  {
-			ObjectOutputStream outputStream = xs.createObjectOutputStream(new FileWriter(file));
-			outputStream.writeObject(company);
-			outputStream.close();
-		} catch (FileNotFoundException ex)  {
-			ex.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static TransportCompany transportXMLReader(String file) {
-		
-		TransportCompany company = null;
-		
-		ObjectInputStream inputStream = null;
-		XStream xs = new XStream(new DomDriver());
 
-		try {
-          	inputStream = xs.createObjectInputStream(new FileReader(file));
-          	company = (TransportCompany)inputStream.readObject();
-
-          	inputStream.close();
-      	} catch (FileNotFoundException ex) {
-          	ex.printStackTrace();
-      	} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-      	if(company==null){
-      		company = new TransportCompany();
-      	}
-		
-		return company;
-	}
-	
-	
 	public static BufferedReader getFileContents(String file) {
 		
 		BufferedReader reader;
@@ -89,7 +43,10 @@ public class BeanUtilities {
 	public static String formatGivenDateString(String myDate) {
 		
 		Date date;
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+		
 		long time;
 		String formattedDate = "";
 		
@@ -166,4 +123,38 @@ public class BeanUtilities {
 		
 		return htmlElements;
 	}
+	
+	
+	/**
+	 * This method is used to return a timestamp for
+	 * a particular time that is set in the following
+	 * format. HH:MM
+	 * @param inputTime
+	 * @return
+	 */
+	public static long getTimestampForStringTime(String inputTime){
+		Date date;
+		long time;
+		String formattedDate = "";
+		String[] hrsMins;
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+		
+		date = new Date(); 
+		time = date.getTime();
+		if(inputTime.equals("Due")) {
+			formattedDate = (String)dateFormat.format(time);
+			hrsMins = formattedDate.split(":");
+		} else {
+			hrsMins = inputTime.split(":");
+		}
+		date.setHours(Integer.parseInt(hrsMins[0]));
+		date.setMinutes(Integer.parseInt(hrsMins[1]));
+		
+		time = date.getTime();
+		
+		return time;
+	}
+	
 }

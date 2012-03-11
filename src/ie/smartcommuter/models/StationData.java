@@ -1,6 +1,6 @@
-package ie.smartcommuter.beans;
+package ie.smartcommuter.models;
 
-public class StationData {
+public class StationData implements Comparable<StationData> {
 	
 	private String route;
 	private String destination;
@@ -52,6 +52,14 @@ public class StationData {
 		System.out.print(", Destination: "+getDestination());
 		System.out.print(", Expected Time: "+getExpectedTime());
 		System.out.print(", Type: "+getIsArrivalOrDeparture()+"\n");
+	}
+
+	public int compareTo(StationData stationData) {
+
+		long time1 = BeanUtilities.getTimestampForStringTime(stationData.getExpectedTime());
+		long time2 = BeanUtilities.getTimestampForStringTime(this.getExpectedTime());
+		
+		return time1>time2 ? 0 : 1;
 	}
 
 }

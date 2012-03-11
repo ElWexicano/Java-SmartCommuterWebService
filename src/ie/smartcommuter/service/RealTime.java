@@ -1,14 +1,16 @@
 package ie.smartcommuter.service;
 
-import ie.smartcommuter.beans.BeanUtilities;
-import ie.smartcommuter.beans.StationData;
+import ie.smartcommuter.models.BeanUtilities;
+import ie.smartcommuter.models.StationData;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 
 public class RealTime {
 	
@@ -199,7 +201,7 @@ public class RealTime {
 	    	
 		    for(Element e : htmlElements){
 		    	
-		    	String route = e.select("Direction").text()+" ("+e.select("Traincode").text()+")";
+		    	String route = e.select("Traincode").text();
 		    	String locationType = e.select("Locationtype").text();
 		    	String destination = e.select("Destination").text();
 		    	
@@ -243,14 +245,33 @@ public class RealTime {
 			json = new JSONObject(BeanUtilities.readFromUrl(url.toString()));
 			json = json.getJSONObject("rs");
 			JSONArray jsonArray = json.getJSONArray("s");
-			json = jsonArray.getJSONObject(0);
-			jsonArray = json.getJSONArray("i");
 			
-			for (int i = 0; i < jsonArray.length(); ++i) {
-			    JSONObject jsonObj = jsonArray.getJSONObject(i);
-			    String[] route = jsonObj.get("r").toString().split(" \\(");
-			    stationDataList.add(new StationData(route[0], jsonObj.get("a").toString(), jsonObj.get("t").toString(), "Departure"));
+			if(jsonArray.length()>0) {
+				
+				json = jsonArray.getJSONObject(0);
+				jsonArray = json.getJSONArray("i");
+				
+				for (int i = 0; i < jsonArray.length(); ++i) {
+				    JSONObject jsonObj = jsonArray.getJSONObject(i);
+				    String[] route = jsonObj.get("r").toString().split(" \\(");
+				    
+				    if(route.length>0) {
+					    route = route[0].split("-");
+					    
+					    String tempRoute = route[0].replace(" ","").substring(0, 3)+
+					    		" - "+
+					    		route[route.length-1].replace(" ","").substring(0, 3);
+
+					    stationDataList.add(new StationData(tempRoute, jsonObj.get("a").toString(), 
+					    		jsonObj.get("t").toString(), "Arrival"));
+					    
+					    stationDataList.add(new StationData(tempRoute, jsonObj.get("a").toString(), 
+					    		jsonObj.get("t").toString(), "Departure"));
+				    }
+				}
 			}
+			
+
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -290,24 +311,34 @@ public class RealTime {
 			StationData tempDeparture = null;
 			
 			for(Element e : htmlElements) {
-				
-				if(i%2==0){
-					tempArrival = new StationData();
-					tempArrival.setDestination(e.text());
-					tempArrival.setRoute(e.parent().className());
-					tempArrival.setIsArrivalOrDeparture("Arrival");
-				} else {
-					tempArrival.setExpectedTime(BeanUtilities.formatGivenDateString(e.text()));
-					stationDataList.add(tempArrival);
-					tempDeparture = tempArrival;
-					tempDeparture.setIsArrivalOrDeparture("Departure");
-					stationDataList.add(tempDeparture);
+
+				if(!e.text().equals("No trams forecast")&&!e.text().isEmpty()){
+
+					if(i%2==0){
+						tempArrival = new StationData();
+						tempArrival.setDestination(e.text());
+						tempArrival.setRoute(e.parent().className());
+						tempArrival.setIsArrivalOrDeparture("Arrival");
+					} else {
+						tempArrival.setExpectedTime(BeanUtilities.formatGivenDateString(e.text()));
+						stationDataList.add(tempArrival);
+						
+						tempDeparture = new StationData();
+						tempDeparture.setDestination(tempArrival.getDestination());
+						tempDeparture.setRoute(tempArrival.getRoute());
+						tempDeparture.setIsArrivalOrDeparture("Departure");
+						tempDeparture.setExpectedTime(tempArrival.getExpectedTime());
+						stationDataList.add(tempDeparture);
+					}
+					
 				}
 				
 				i++;
 			}
 			
 		}
+		
+		Collections.sort(stationDataList);
 		
 		return stationDataList;
 	}

@@ -1,4 +1,4 @@
-package ie.smartcommuter.beans;
+package ie.smartcommuter.models;
 
 import java.util.List;
 
