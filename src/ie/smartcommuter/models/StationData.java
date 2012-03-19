@@ -59,7 +59,17 @@ public class StationData implements Comparable<StationData> {
 		long time1 = BeanUtilities.getTimestampForStringTime(stationData.getExpectedTime());
 		long time2 = BeanUtilities.getTimestampForStringTime(this.getExpectedTime());
 		
-		return time1>time2 ? 0 : 1;
+		int i;
+		
+		if(time1==time2){
+			i = 0;
+		} else if(time1 > time2) {
+			i = -1;
+		} else {
+			i = 1;
+		}
+		
+		return i;
 	}
 
 }

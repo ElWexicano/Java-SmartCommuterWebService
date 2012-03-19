@@ -135,23 +135,17 @@ public class BeanUtilities {
 	public static long getTimestampForStringTime(String inputTime){
 		Date date;
 		long time;
-		String formattedDate = "";
-		String[] hrsMins;
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-		
-		date = new Date(); 
-		time = date.getTime();
-		if(inputTime.equals("Due")) {
-			formattedDate = (String)dateFormat.format(time);
-			hrsMins = formattedDate.split(":");
-		} else {
-			hrsMins = inputTime.split(":");
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+		if(!inputTime.equals("Due")) {
+			String[] hrsMins = inputTime.split(":");
+			cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hrsMins[0]));
+			cal.set(Calendar.MINUTE, Integer.parseInt(hrsMins[1]));
 		}
-		date.setHours(Integer.parseInt(hrsMins[0]));
-		date.setMinutes(Integer.parseInt(hrsMins[1]));
-		
+
+		date = cal.getTime();
 		time = date.getTime();
 		
 		return time;
