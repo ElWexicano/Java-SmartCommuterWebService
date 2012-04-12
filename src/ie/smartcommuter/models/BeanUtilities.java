@@ -45,7 +45,7 @@ public class BeanUtilities {
 		Date date;
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+		dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Dublin"));
 		
 		long time;
 		String formattedDate = "";
@@ -63,7 +63,7 @@ public class BeanUtilities {
 			date = new Date(); 
 			time = date.getTime();
 			time += x*60*1000;
-
+			
 			formattedDate = (String)dateFormat.format(time);
 		}
 		
@@ -137,7 +137,7 @@ public class BeanUtilities {
 		long time;
 
 		Calendar cal = Calendar.getInstance();
-		cal.setTimeZone(TimeZone.getTimeZone("GMT"));
+		cal.setTimeZone(TimeZone.getTimeZone("Europe/Dublin"));
 
 		if(!inputTime.equals("Due")) {
 			String[] hrsMins = inputTime.split(":");
