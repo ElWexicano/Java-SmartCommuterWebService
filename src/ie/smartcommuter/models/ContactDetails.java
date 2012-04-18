@@ -1,5 +1,10 @@
 package ie.smartcommuter.models;
 
+/**
+ * This class creates instance of Contact Details
+ * for Transport Companies.
+ * @author Shane Bryan Doyle
+ */
 public class ContactDetails {
 
 	private String email;

@@ -11,7 +11,12 @@ import org.json.JSONObject;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
+/**
+ * This class stores methods that are used to
+ * get RealTime information for Public Transport
+ * Stations.
+ * @author Shane Bryan Doyle
+ */
 public class RealTime {
 	
 	private static List<StationData> stationDataList;

@@ -2,6 +2,11 @@ package ie.smartcommuter.models;
 
 import java.util.List;
 
+/**
+ * This class creates instance of Public Transport
+ * Stations.
+ * @author Shane Bryan Doyle
+ */
 public class Station {
 	
 	private String name;

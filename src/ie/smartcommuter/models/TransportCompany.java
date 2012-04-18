@@ -2,6 +2,10 @@ package ie.smartcommuter.models;
 
 import java.util.List;
 
+/**
+ * This class creates instance of Transport Companies.
+ * @author Shane Bryan Doyle
+ */
 public class TransportCompany {
 	
 	private String name;

@@ -1,5 +1,9 @@
 package ie.smartcommuter.models;
 
+/**
+ * This class creates instance CoOrdinates.
+ * @author Shane Bryan Doyle
+ */
 public class CoOrdinates {
 	
 	private String latitude;

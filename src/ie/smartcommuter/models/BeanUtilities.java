@@ -14,9 +14,19 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-
+/**
+ * This class is used to store various Bean Utility 
+ * Methods.
+ * @author Shane Bryan Doyle
+ */
 public class BeanUtilities {
 
+	/**
+	 * This method is used to get the contents of a
+	 * file and return them in a BufferedReader.
+	 * @param file
+	 * @return
+	 */
 	public static BufferedReader getFileContents(String file) {
 		
 		BufferedReader reader;

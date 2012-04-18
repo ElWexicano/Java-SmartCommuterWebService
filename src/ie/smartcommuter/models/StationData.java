@@ -1,5 +1,10 @@
 package ie.smartcommuter.models;
 
+/**
+ * This class creates instance of RealTime information
+ * for a station.
+ * @author Shane Bryan Doyle
+ */
 public class StationData implements Comparable<StationData> {
 	
 	private String route;
@@ -47,6 +52,10 @@ public class StationData implements Comparable<StationData> {
 		this.isArrivalOrDeparture = isArrivalOrDeparture;
 	}
 	
+	/**
+	 * This method is used to print the RealTime info to
+	 * the console.
+	 */
 	public void printStationData(){
 		System.out.print("Route: "+getRoute());
 		System.out.print(", Destination: "+getDestination());
@@ -54,6 +63,10 @@ public class StationData implements Comparable<StationData> {
 		System.out.print(", Type: "+getIsArrivalOrDeparture()+"\n");
 	}
 
+	/**
+	 * This method is used to compare StationData so that they
+	 * can be sorted in a list.
+	 */
 	public int compareTo(StationData stationData) {
 
 		long time1 = BeanUtilities.getTimestampForStringTime(stationData.getExpectedTime());
