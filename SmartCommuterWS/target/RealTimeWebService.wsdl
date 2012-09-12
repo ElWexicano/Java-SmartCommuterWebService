@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://service.smartcommuter.ie" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax21="http://models.smartcommuter.ie/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://service.smartcommuter.ie">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://models.smartcommuter.ie/xsd">
+            <xs:complexType name="StationData">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="destination" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="expectedTime" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="isArrivalOrDeparture" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="route" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax22="http://models.smartcommuter.ie/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://service.smartcommuter.ie">
+            <xs:import namespace="http://models.smartcommuter.ie/xsd"/>
+            <xs:element name="getStationData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="stationType" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="stationApiCode" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getStationDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:StationData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getLuasStationData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="apiCode" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getLuasStationDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:StationData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDublinBusStationData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="apiCode" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDublinBusStationDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:StationData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getIrishRailStationData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="apiCode" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getIrishRailStationDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:StationData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getJJKavanaghStationData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="apiCode" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getJJKavanaghStationDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:StationData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBusEireannStationData">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="apiCode" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBusEireannStationDataResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:StationData"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getBusEireannStationDataRequest">
+        <wsdl:part name="parameters" element="ns:getBusEireannStationData"/>
+    </wsdl:message>
+    <wsdl:message name="getBusEireannStationDataResponse">
+        <wsdl:part name="parameters" element="ns:getBusEireannStationDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getIrishRailStationDataRequest">
+        <wsdl:part name="parameters" element="ns:getIrishRailStationData"/>
+    </wsdl:message>
+    <wsdl:message name="getIrishRailStationDataResponse">
+        <wsdl:part name="parameters" element="ns:getIrishRailStationDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getJJKavanaghStationDataRequest">
+        <wsdl:part name="parameters" element="ns:getJJKavanaghStationData"/>
+    </wsdl:message>
+    <wsdl:message name="getJJKavanaghStationDataResponse">
+        <wsdl:part name="parameters" element="ns:getJJKavanaghStationDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getDublinBusStationDataRequest">
+        <wsdl:part name="parameters" element="ns:getDublinBusStationData"/>
+    </wsdl:message>
+    <wsdl:message name="getDublinBusStationDataResponse">
+        <wsdl:part name="parameters" element="ns:getDublinBusStationDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getStationDataRequest">
+        <wsdl:part name="parameters" element="ns:getStationData"/>
+    </wsdl:message>
+    <wsdl:message name="getStationDataResponse">
+        <wsdl:part name="parameters" element="ns:getStationDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getLuasStationDataRequest">
+        <wsdl:part name="parameters" element="ns:getLuasStationData"/>
+    </wsdl:message>
+    <wsdl:message name="getLuasStationDataResponse">
+        <wsdl:part name="parameters" element="ns:getLuasStationDataResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="RealTimeWebServicePortType">
+        <wsdl:operation name="getBusEireannStationData">
+            <wsdl:input message="ns:getBusEireannStationDataRequest" wsaw:Action="urn:getBusEireannStationData"/>
+            <wsdl:output message="ns:getBusEireannStationDataResponse" wsaw:Action="urn:getBusEireannStationDataResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getIrishRailStationData">
+            <wsdl:input message="ns:getIrishRailStationDataRequest" wsaw:Action="urn:getIrishRailStationData"/>
+            <wsdl:output message="ns:getIrishRailStationDataResponse" wsaw:Action="urn:getIrishRailStationDataResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getJJKavanaghStationData">
+            <wsdl:input message="ns:getJJKavanaghStationDataRequest" wsaw:Action="urn:getJJKavanaghStationData"/>
+            <wsdl:output message="ns:getJJKavanaghStationDataResponse" wsaw:Action="urn:getJJKavanaghStationDataResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getDublinBusStationData">
+            <wsdl:input message="ns:getDublinBusStationDataRequest" wsaw:Action="urn:getDublinBusStationData"/>
+            <wsdl:output message="ns:getDublinBusStationDataResponse" wsaw:Action="urn:getDublinBusStationDataResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getStationData">
+            <wsdl:input message="ns:getStationDataRequest" wsaw:Action="urn:getStationData"/>
+            <wsdl:output message="ns:getStationDataResponse" wsaw:Action="urn:getStationDataResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getLuasStationData">
+            <wsdl:input message="ns:getLuasStationDataRequest" wsaw:Action="urn:getLuasStationData"/>
+            <wsdl:output message="ns:getLuasStationDataResponse" wsaw:Action="urn:getLuasStationDataResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="RealTimeWebServiceSoap11Binding" type="ns:RealTimeWebServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getBusEireannStationData">
+            <soap:operation soapAction="urn:getBusEireannStationData" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getIrishRailStationData">
+            <soap:operation soapAction="urn:getIrishRailStationData" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getJJKavanaghStationData">
+            <soap:operation soapAction="urn:getJJKavanaghStationData" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDublinBusStationData">
+            <soap:operation soapAction="urn:getDublinBusStationData" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStationData">
+            <soap:operation soapAction="urn:getStationData" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getLuasStationData">
+            <soap:operation soapAction="urn:getLuasStationData" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="RealTimeWebServiceSoap12Binding" type="ns:RealTimeWebServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getBusEireannStationData">
+            <soap12:operation soapAction="urn:getBusEireannStationData" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getIrishRailStationData">
+            <soap12:operation soapAction="urn:getIrishRailStationData" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getJJKavanaghStationData">
+            <soap12:operation soapAction="urn:getJJKavanaghStationData" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDublinBusStationData">
+            <soap12:operation soapAction="urn:getDublinBusStationData" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStationData">
+            <soap12:operation soapAction="urn:getStationData" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getLuasStationData">
+            <soap12:operation soapAction="urn:getLuasStationData" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="RealTimeWebServiceHttpBinding" type="ns:RealTimeWebServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="getBusEireannStationData">
+            <http:operation location="RealTimeWebService/getBusEireannStationData"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getBusEireannStationData"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getBusEireannStationData"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getIrishRailStationData">
+            <http:operation location="RealTimeWebService/getIrishRailStationData"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getIrishRailStationData"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getIrishRailStationData"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getJJKavanaghStationData">
+            <http:operation location="RealTimeWebService/getJJKavanaghStationData"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getJJKavanaghStationData"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getJJKavanaghStationData"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDublinBusStationData">
+            <http:operation location="RealTimeWebService/getDublinBusStationData"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getDublinBusStationData"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getDublinBusStationData"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStationData">
+            <http:operation location="RealTimeWebService/getStationData"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getStationData"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getStationData"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getLuasStationData">
+            <http:operation location="RealTimeWebService/getLuasStationData"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getLuasStationData"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getLuasStationData"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="RealTimeWebService">
+        <wsdl:port name="RealTimeWebServiceHttpSoap11Endpoint" binding="ns:RealTimeWebServiceSoap11Binding">
+            <soap:address location="http://localhost:8080/axis2/services/RealTimeWebService"/>
+        </wsdl:port>
+        <wsdl:port name="RealTimeWebServiceHttpSoap12Endpoint" binding="ns:RealTimeWebServiceSoap12Binding">
+            <soap12:address location="http://localhost:8080/axis2/services/RealTimeWebService"/>
+        </wsdl:port>
+        <wsdl:port name="RealTimeWebServiceHttpEndpoint" binding="ns:RealTimeWebServiceHttpBinding">
+            <http:address location="http://localhost:8080/axis2/services/RealTimeWebService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

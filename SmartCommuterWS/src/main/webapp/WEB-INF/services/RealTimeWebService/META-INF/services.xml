@@ -1,0 +1,9 @@
+<service name="RealTimeWebService" targetNamespace="http://ie.smartcommuter.service.RealTimeWebService/">
+    <description>JNLPGenerator service</description>
+    <schema schemaNamespace="http://ie.smartcommuter.service.RealTimeWebService/" />
+    <parameter name="ServiceClass" locked="false">ie.smartcommuter.service.RealTimeWebService</parameter>
+    <messageReceivers>
+      <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver"/>
+	  <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out" class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+    </messageReceivers>
+</service>
