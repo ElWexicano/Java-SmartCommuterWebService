@@ -43,9 +43,9 @@ public class BeanUtilities {
 	public static String formatGivenDateString(String myDate) {
 		
 		Date date;
-		
+
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+		dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Dublin"));
 		
 		long time;
 		String formattedDate = "";
@@ -60,7 +60,7 @@ public class BeanUtilities {
 		} else {
 			int x = Integer.parseInt(myDate.replaceAll("\\D",""));
 			
-			date = new Date(); 
+			date = new Date();
 			time = date.getTime();
 			time += x*60*1000;
 
@@ -139,7 +139,7 @@ public class BeanUtilities {
 		String[] hrsMins;
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+		dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Dublin"));
 		
 		date = new Date(); 
 		time = date.getTime();
